@@ -9,3 +9,9 @@ npm run ios
 ```
 # What the app has
 A bunch of dummy products, where the user (unauthenticated) can add items to the cart, modify it or checkout the cart. Checking out creates an order summary for the user.
+
+# Tools
+- React Native
+- React Native Animated API
+- Redux/React-Redux
+- React Navigation
