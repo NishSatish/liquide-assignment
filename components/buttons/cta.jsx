@@ -1,3 +1,5 @@
+// RESUABLE BUTTON
+
 import { Text, TouchableOpacity, View } from "react-native"
 import ctaStyle from "./ctaStyle"
 import { useFonts } from "expo-font"

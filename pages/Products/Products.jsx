@@ -1,3 +1,6 @@
+// PRODUCTS PAGE
+// Shows the main list of products
+
 import { ScrollView, View } from "react-native"
 import { Navbar } from "../../components/Navbar/Navbar";
 import styles from './ProductsStyle';

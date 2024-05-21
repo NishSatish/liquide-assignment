@@ -1,3 +1,5 @@
+// STRUCTURE OF A PRODUCT ITEM AS SEEN IN PRODUCTS AND CART PAGE
+
 import { Animated, Image, Text, TouchableOpacity, View } from "react-native";
 import styles from './ProductItemStyle';
 import { useFonts } from "expo-font";

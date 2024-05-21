@@ -1,3 +1,5 @@
+// LANDING PAGE
+
 import { Text, View } from "react-native";
 import HomeStyle from "./HomeStyle";
 import { useFonts } from "expo-font";

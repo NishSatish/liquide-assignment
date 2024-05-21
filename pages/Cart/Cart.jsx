@@ -1,11 +1,12 @@
-import { ScrollView, View, Text, TouchableOpacity } from 'react-native';
+// CART PAGE
+
+import { ScrollView, View, Text } from 'react-native';
 import {Navbar} from '../../components/Navbar/Navbar';
 import styles from './CartStyle';
 import { useFonts } from 'expo-font';
 import { useDispatch, useSelector } from 'react-redux';
 import { ProductItem } from '../../components/ProductItem/ProductItem';
 import { CTAButton } from '../../components/buttons/cta';
-import { useEffect, useState } from 'react';
 import { orderActions } from '../../redux/orders';
 import { cartActions } from '../../redux/cart';
 

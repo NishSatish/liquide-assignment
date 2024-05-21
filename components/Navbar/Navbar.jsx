@@ -1,3 +1,5 @@
+// STATIC NAVBAR THAT IS REUSED IN EVERY FUNCTIONAL PAGE
+
 import { SafeAreaView, View, Text, Animated } from "react-native"
 import styles from "./NavbarStyle"
 import { useFonts } from "expo-font"

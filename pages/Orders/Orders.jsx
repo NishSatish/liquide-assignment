@@ -1,3 +1,5 @@
+// ORDERS PAGE
+
 import { ScrollView, Text, View } from "react-native"
 import { Navbar } from "../../components/Navbar/Navbar";
 import styles from './OrdersStyle';
