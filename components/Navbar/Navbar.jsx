@@ -1,8 +1,7 @@
-import { SafeAreaView, View, Text } from "react-native"
+import { SafeAreaView, View, Text, Animated } from "react-native"
 import styles from "./NavbarStyle"
 import { useFonts } from "expo-font"
 import { useSelector } from "react-redux";
-import { useState } from "react";
 
 export const Navbar = ({ nav, getCartPos }) => {
   const [fonts] = useFonts({
@@ -10,9 +9,6 @@ export const Navbar = ({ nav, getCartPos }) => {
     'Gilroy-L': require('../../assets/fonts/Gilroy-Light.otf'),
   });
   const cartQuantity = useSelector(state => state.cart.totalQuantity);
-  const [linkPos, setLinkPos] = useState({x: 0, y: 0});
-
-  // console.log(linkPos);
 
   if (!fonts) {
     return <Text>Error</Text>

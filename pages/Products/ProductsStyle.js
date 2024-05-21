@@ -8,7 +8,7 @@ export default style = StyleSheet.create({
   productList: {
     flex: 1,
     alignItems: 'center',
-    marginTop: 35,
+    marginTop: 65,
     gap: 25
   },
 });

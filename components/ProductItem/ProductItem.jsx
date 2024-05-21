@@ -14,6 +14,13 @@ export const ProductItem = ({ name, price, img, id, propStyles, children, resetA
   const cartItems = useSelector(state => state.cart.items);
   const fadeIn = useRef(new Animated.Value(0)).current;
   const imagePos = useRef(new Animated.ValueXY({x: 0, y: 0})).current;
+  const scaleValue = useRef(new Animated.Value(1)).current;
+
+  const DURATION_VALUES = {
+    // Time duration values for the animations
+    shrink: 350,
+    fly: 1000
+  }
 
   // Reset animation for cart page view
   if (resetAnimation) {
@@ -29,30 +36,45 @@ export const ProductItem = ({ name, price, img, id, propStyles, children, resetA
       fadeIn,
       {
         toValue: 1,
-        duration: 1000,
+        duration: DURATION_VALUES.fly,
         useNativeDriver: true
       }
     ).start();
   }
 
   const flyImageToCart = () => {
-    Animated.timing(
+    Animated.parallel([ 
+      Animated.timing(scaleValue, {
+        toValue: 0, // Scale to 0 to make it shrink
+        duration: DURATION_VALUES.shrink, // Duration of the animation in milliseconds
+        useNativeDriver: true, // Enable native driver for better performance
+      }),
+      
+      Animated.timing(
       imagePos,
       {
-        toValue: { x: 500, y: -2000 },
-        duration: 1000,
-        useNativeDriver: false
+        ...imagePos.getTranslateTransform(),
+        toValue: { x: 1000, y: -2000 },
+        duration: DURATION_VALUES.fly,
+        useNativeDriver: true
       }
-    ).start(() => {
+    )]).start(() => {
       addItem();
-      Animated.timing(
+      Animated.parallel([
+        Animated.timing(
+          scaleValue, {
+          toValue: 1, // Scale to 0 to make it shrink
+          duration: 0, // Duration of the animation in milliseconds
+          useNativeDriver: true, // Enable native driver for better performance
+        }),
+        Animated.timing(
         imagePos,
         {
           toValue: {x:0, y:0},
           duration: 0,
-          useNativeDriver: false
+          useNativeDriver: true
         }
-      ).start();
+      )]).start();
     });
   }
   
@@ -82,7 +104,9 @@ export const ProductItem = ({ name, price, img, id, propStyles, children, resetA
   return (
     <View style={styles.productFlex}>
       <View style={styles.productImgHolder}>
-        <Animated.Image source={img} style={{...styles.productImg, transform: imagePos.getTranslateTransform()}}/>
+        <Animated.Image 
+          source={img} 
+          style={{...styles.productImg, transform: [{translateX: imagePos.x}, {translateY: imagePos.y}, {scale: scaleValue}]}}/>
       </View>
 
       <View style={styles.productInfo}>
@@ -103,7 +127,7 @@ export const ProductItem = ({ name, price, img, id, propStyles, children, resetA
 
               <Text style={styles.cartQuantity}> {itemExists.quantity} </Text>
 
-              <TouchableOpacity style={styles.controlHolder} onPress={addItem}>
+              <TouchableOpacity style={styles.controlHolder} onPress={flyImageToCart}>
                 <Image source={require('../../assets/images/PLUS.png')} style={styles.control}/>
               </TouchableOpacity>
             </View>

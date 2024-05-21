@@ -12,7 +12,7 @@ export const OrderItem = ({ items, quantity, value }) => {
         {
           items.map(item => {
             return (
-              <View style={styles.itemFlex}>
+              <View style={styles.itemFlex} key={Math.random()}>
                 <Text style={styles.multiplier}>{item.quantity}x</Text>
                 <View style={styles.itemSummary}>
                   <Text style={styles.itemName}>{item.name}</Text>
